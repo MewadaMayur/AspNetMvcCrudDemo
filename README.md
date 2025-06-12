@@ -31,10 +31,15 @@ A simple and clean **ASP.NET MVC** project demonstrating full **CRUD operations*
 ## 📁 Folder Structure
 
 /Controllers → MVC controllers
+
 /Models → Entity and View models
+
 /Views → Razor views for each action
+
 /App_Data → LocalDB database files (optional)
+
 /Scripts → jQuery, Bootstrap scripts
+
 /Content → CSS and styles
 
 ![image](https://github.com/user-attachments/assets/73b2b026-0d42-4eaa-baaf-b89d064c93db)

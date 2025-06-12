@@ -1,0 +1,117 @@
+﻿@{
+
+    ViewBag.Title = "Home Page";
+    var table = ViewBag.Employees;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model crud_framework_four_eight.Models.Employee
+
+
+<main>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary float-end mb-3" onclick="AddEmployee()">
+        + Employee
+    </button>
+    <table id="employeeTable" border="1">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Position</td>
+                <td>Salary</td>
+                <td>Joining Date</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="EmployeeModal" aria-labelledby="EmployeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" onclick="AddEmployee()">Add/Update Employee</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="employeeForm">
+                    @Html.AntiForgeryToken()
+
+                    <div class="modal-body">
+                        <input type="hidden" id="empId" name="Id">
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="empName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="empName" name="empName" required>
+
+
+                            </div>
+                            <div class="col-md-6">
+                                <label for="empPosition" class="form-label">Position</label>
+                                <input type="text" class="form-control" id="empPosition" name="Position" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="empSalary" class="form-label">Salary</label>
+                                <input type="number" class="form-control" id="empSalary" name="Salary" >
+                            </div>
+                            <div class="col-md-6">
+                                <label for="empDateOfJoining" class="form-label">Date of Joining</label>
+                                <input type="date" class="form-control" id="empDateOfJoining" name="DateOfJoining" >
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="empDepartment" class="form-label">Department</label>
+                                <input type="text" class="form-control" id="empDepartment" name="Department" >
+                            </div>
+                            <div class="col-md-6">
+                                <label for="empEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="empEmail" name="Email" >
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="empPhone" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" id="empPhone" name="PhoneNumber" >
+                            </div>
+                            <div class="col-md-6">
+                                <label for="empAddress" class="form-label">Address</label>
+                                <textarea class="form-control" id="empAddress" name="Address" rows="2" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" onclick="SaveEmployee()">Save Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+    // just for the demos, avoids form submit
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $("#employeeForm").validate({
+        rules: {
+            empName: {
+                required: true
+            }
+        }
+    });
+</script>
